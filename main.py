@@ -90,10 +90,8 @@ def train(dataloader, model, criterion, optimizer, device):
         print("Time for batch", count, " is:", elapsed)
         if count > 0:
             total += elapsed
-        if count == 40:
-            break
         count += 1
-    print("Avg time:", (total / 40))
+    print("Avg time:", (total / count))
     return epoch_losses, epoch_accs
 
 def evaluate(dataloader, model, criterion, device):
