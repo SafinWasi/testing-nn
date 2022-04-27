@@ -245,13 +245,9 @@ def main():
         ddp_model = DDP(model)
         ddp_model.to(device)
         train_sampler = DistributedSampler(train_data)
-        train_loader = torch.utils.data.DataLoader(train_data,sampler=train_sampler, batch_size=batch_size, 
-                                                collate_fn=collate, 
-                                                shuffle=True)
+        train_loader = torch.utils.data.DataLoader(train_data,sampler=train_sampler)
         valid_sampler = DistributedSampler(valid_data)
-        valid_loader = torch.utils.data.DataLoader(valid_data, sampler=valid_sampler, batch_size=batch_size, 
-                                                collate_fn=collate, 
-                                                shuffle=True)
+        valid_loader = torch.utils.data.DataLoader(valid_data, sampler=valid_sampler)
         train_model(ddp_model, train_loader, valid_loader, criterion, optimizer, device)
 
     else:
