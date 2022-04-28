@@ -205,7 +205,7 @@ def main():
     args = parser.parse_args(sys.argv[1:])
     args = vars(args)
 
-    vocab_size = len(vocab)
+    vocab_size = 25000
     embedding_dim = 300
     hidden_dim = 300
     output_dim = len(train_data.unique('label'))
@@ -223,9 +223,9 @@ def main():
                     pad_index)
         model.load_state_dict(torch.load(args['model'][0]))
     print(model)
-    vectors = torchtext.vocab.FastText()
-    pretrained_embedding = vectors.get_vecs_by_tokens(vocab.get_itos())
-    model.embedding.weight.data = pretrained_embedding
+    # vectors = torchtext.vocab.FastText()
+    # pretrained_embedding = vectors.get_vecs_by_tokens(vocab.get_itos())
+    # model.embedding.weight.data = pretrained_embedding
 
     lr = 0.01
 
